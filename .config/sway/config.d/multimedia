@@ -1,0 +1,10 @@
+# identify keys with `xev -event keyboard`
+
+bindsym XF86AudioMute exec pactl set-sink-mute `pactl list sinks short | grep RUNNING | awk '{print $1}'` toggle
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume `pactl list sinks short | grep RUNNING | awk '{print $1}'` -2%
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume `pactl list sinks short | grep RUNNING | awk '{print $1}'` +2%
+
+bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86MonBrightnessUp exec light -A 5
+
+bindsym Print exec ~/.config/sway/scripts/screenshot.sh
