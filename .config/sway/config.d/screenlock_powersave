@@ -5,3 +5,5 @@ exec swayidle -w \
          before-sleep 'swaylock -e -f -i ~/lockscreen_wallpaper.jpg'
 
 bindsym $mod+Alt+l exec 'swaylock -e -f -i ~/lockscreen_wallpaper.jpg'
+
+for_window [app_id="firefox"] inhibit_idle fullscreen
