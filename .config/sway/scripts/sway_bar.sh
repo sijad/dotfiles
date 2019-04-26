@@ -15,8 +15,12 @@ jalali_date=$($DIR/jalali)
 #############
 
 # Battery or charger
-battery_charge=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "percentage" | awk '{print $2}')
-battery_status=$(upower --show-info $(upower --enumerate | grep 'BAT') | egrep "state" | awk '{print $2}')
+battery0_name=$(upower --enumerate | grep 'BAT0')
+battery1_name=$(upower --enumerate | grep 'BAT1')
+battery0_charge=$(upower --show-info $battery0_name | egrep "percentage" | awk '{print $2}')
+battery1_charge=$(upower --show-info $battery1_name | egrep "percentage" | awk '{print $2}')
+battery0_status=$(upower --show-info $battery0_name | egrep "state" | awk '{print $2}')
+battery1_status=$(upower --show-info $battery1_name | egrep "state" | awk '{print $2}')
 
 # Audio and multimedia
 audio_volume=$(amixer sget Master | awk -F"[][]" '/dB/ { print $2 }')
@@ -29,7 +33,7 @@ language=$(swaymsg -r -t get_inputs | awk '/1:1:AT_Translated_Set_2_keyboard/;/x
 # refresh on the bar
 #weather=$(curl -Ss 'https://wttr.in/Pontevedra?0&T&Q&format=1')
 
-if [ $battery_status = "discharging" ];
+if [ $battery0_status = "discharging" ] || [ $battery1_status = "discharging" ] ;
 then
     battery_pluggedin='⚠'
 else
@@ -50,4 +54,4 @@ else
     audio_active='🔊'
 fi
 
-echo "⌨ $language | $audio_active $audio_volume | $battery_pluggedin $battery_charge | 🕘 $date_and_week $current_time | $jalali_date"
+echo "⌨ $language | $audio_active $audio_volume | $battery_pluggedin $battery0_charge $battery1_charge | 🕘 $date_and_week $current_time | $jalali_date"
