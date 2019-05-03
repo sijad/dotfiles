@@ -77,5 +77,5 @@ let g:ale_fixers = {
 \   'typescript': ['eslint', 'tslint'],
 \   'json': ['prettier'],
 \   'css': ['prettier'],
-\   'php': ['php-cs-fixer'],
+\   'php': ['php_cs_fixer', 'phpcbf'],
 \}
