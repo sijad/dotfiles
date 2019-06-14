@@ -10,10 +10,9 @@ Plug '~/.fzf' | Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'chrisbra/csv.vim'
 Plug 'w0rp/ale'
-Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-fugitive'
+Plug 'justinmk/vim-sneak'
 
 call plug#end()
 
@@ -47,6 +46,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'onedark'
 
 let g:javascript_plugin_flow = 1
+let g:jsx_ext_required = 1
 
 let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
@@ -55,6 +55,11 @@ let g:ale_go_golangci_lint_options = '--enable-all
 \ --disable typecheck
 \ --disable gochecknoglobals
 \ --disable gochecknoinits'
+
+let g:sneak#use_ic_scs = 1
+
+let mapleader = ";"
+let g:mapleader = ";"
 
 nmap <leader>f :GFiles<CR>
 nmap <leader>F :GFiles?<CR>
