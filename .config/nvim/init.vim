@@ -58,8 +58,8 @@ let g:ale_go_golangci_lint_options = '--enable-all
 
 let g:sneak#use_ic_scs = 1
 
-let mapleader = ";"
-let g:mapleader = ";"
+let mapleader = ","
+let g:mapleader = ","
 
 nmap <leader>f :GFiles<CR>
 nmap <leader>F :GFiles?<CR>
