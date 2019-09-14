@@ -5,5 +5,5 @@ set -gx GTK_THEME "Arc-Darker"
 set -gx MOZ_ENABLE_WAYLAND 1
 
 if test (tty) = "/dev/tty1"
-  exec sway
+  exec sway 2>&1 >> $HOME/sway.log
 end
