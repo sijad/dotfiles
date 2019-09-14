@@ -8,3 +8,8 @@ bindsym XF86MonBrightnessDown exec light -U 5
 bindsym XF86MonBrightnessUp exec light -A 5
 
 bindsym Print exec ~/.config/sway/scripts/screenshot.sh
+
+# cmus
+bindsym $mod+XF86AudioMute exec echo player-pause | cmus-remote
+bindsym $mod+XF86AudioLowerVolume exec echo player-prev | cmus-remote
+bindsym $mod+XF86AudioRaiseVolume exec echo player-next | cmus-remote
