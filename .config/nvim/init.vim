@@ -13,6 +13,7 @@ Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'justinmk/vim-sneak'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
