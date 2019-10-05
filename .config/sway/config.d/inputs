@@ -2,7 +2,7 @@ input "1:1:AT_Translated_Set_2_keyboard" {
   xkb_layout us,ir
   xkb_options grp:caps_toggle
   repeat_delay 140
-  repeat_rate 35
+  repeat_rate 50
 }
 
 input "1739:0:Synaptics_TM3276-022" {
