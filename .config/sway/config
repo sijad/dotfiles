@@ -17,7 +17,6 @@ set $right l
 set $term kitty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu rofi -theme /usr/share/rofi/themes/Monokai.rasi -show run -run-command "swaymsg exec {cmd}"
 
 default_border none
 gaps inner 3
@@ -63,7 +62,8 @@ font pango:Vazir Code Hack 10
     bindsym $mod+q kill
 
     # start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+d exec termite --name=launcher -e "sh -c 'dmenu_path | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'"
+    for_window [app_id="^launcher$"] floating enable, border none, opacity 0.9, resize set 400 230
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
