@@ -1,0 +1,5 @@
+{
+  "tsserver.npm": "~/.config/nvm/10.16.0/bin/npm",
+  "eslint.filetypes": ["javascript","javascriptreact", "typescript", "typescriptreact"],
+  "eslint.autoFixOnSave": true
+}

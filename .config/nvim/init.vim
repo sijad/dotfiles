@@ -10,10 +10,11 @@ Plug '~/.fzf' | Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'justinmk/vim-sneak'
 Plug 'joshdick/onedark.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'Shougo/neosnippet.vim'
 
 call plug#end()
 
@@ -49,14 +50,6 @@ let g:airline_theme = 'onedark'
 let g:javascript_plugin_flow = 1
 let g:jsx_ext_required = 1
 
-let g:ale_completion_enabled = 1
-let g:ale_fix_on_save = 1
-let g:ale_sign_column_always = 1
-let g:ale_go_golangci_lint_options = '--enable-all
-\ --disable typecheck
-\ --disable gochecknoglobals
-\ --disable gochecknoinits'
-
 let g:sneak#use_ic_scs = 1
 
 let mapleader = ","
@@ -70,18 +63,8 @@ nmap gs  <plug>(GrepperOperator)
 set mouse=
 set completeopt=menu,menuone,preview,noselect,noinsert
 
-let g:ale_linters = {
-\   'javascript': ['eslint', 'flow-language-server'],
-\   'javascript.jsx': ['eslint', 'flow-language-server'],
-\   'go': ['bingo', 'gotype', 'golint', 'golangci-lint'],
-\}
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
 
-let g:ale_fixers = {
-\   'go': ['goimports', 'gofmt'],
-\   'javascript': ['prettier', 'eslint'],
-\   'javascript.jsx': ['prettier', 'eslint'],
-\   'typescript': ['eslint', 'tslint'],
-\   'json': ['prettier'],
-\   'css': ['prettier'],
-\   'php': ['php_cs_fixer', 'phpcbf'],
-\}
+autocmd BufWritePre *.go :CocCommand editor.action.organizeImport
