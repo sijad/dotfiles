@@ -10,8 +10,6 @@ Plug '~/.fzf' | Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
-Plug 'justinmk/vim-sneak'
 Plug 'joshdick/onedark.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Shougo/neosnippet.vim'
