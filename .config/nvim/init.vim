@@ -16,6 +16,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'tpope/vim-vinegar'
 
 call plug#end()
 
@@ -73,3 +74,5 @@ autocmd BufWritePre *.go :CocCommand editor.action.organizeImport
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+let g:netrw_liststyle=3
