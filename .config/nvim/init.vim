@@ -15,53 +15,53 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-sensible'
+Plug 'andymass/vim-matchup'
 
 call plug#end()
 
-source ~/.config/nvim/basic.vim
-
-set noai
-
-set history=1000
-
-set number
-
-set showbreak=↪\ 
-set listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨," eol:↲,nbsp:·,
-set list
-
 " Theme
-" let g:onedark_termcolors=256
-set background=dark
 colorscheme onedark
 hi SpecialKey ctermfg=8
+
 set termguicolors
 set cc=80
-
-" 1 tab == 2 spaces
+set list
 set shiftwidth=2
 set tabstop=2
+set noai
+set number
+set cmdheight=2
+set ignorecase
+set smartcase
+set hlsearch
+set magic
+set foldcolumn=1
+set t_Co=256
+set nobackup
+set nowb
+set noswapfile
+set expandtab
+set smartindent
+set wrap
+set mouse=
+set completeopt=menu,menuone,preview,noselect,noinsert
+set showbreak=↪\ 
+set listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨," eol:↲,nbsp:·,
 
-
-" Plugins
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'onedark'
-
-let g:javascript_plugin_flow = 1
-let g:jsx_ext_required = 1
-
-let g:sneak#use_ic_scs = 1
 
 let mapleader = ","
 let g:mapleader = ","
 
+let g:netrw_liststyle=3
+
 nmap <leader>f :GFiles<CR>
 nmap <leader>F :GFiles?<CR>
+nmap <leader>g :Ag 
 
 nmap gs  <plug>(GrepperOperator)
-
-set mouse=
-set completeopt=menu,menuone,preview,noselect,noinsert
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -73,4 +73,23 @@ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-let g:netrw_liststyle=3
+vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+function! VisualSelection(direction, extra_filter) range
+  let l:saved_reg = @"
+  execute "normal! vgvy"
+
+  let l:pattern = escape(@", '\\/.*$^~[]')
+  let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+  if a:direction == 'gv'
+    call CmdLine("Ag \"" . l:pattern . "\" " )
+  elseif a:direction == 'replace'
+    call CmdLine("%s" . '/'. l:pattern . '/')
+  endif
+
+  let @/ = l:pattern
+  let @" = l:saved_reg
+endfunction
