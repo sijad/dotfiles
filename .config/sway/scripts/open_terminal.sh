@@ -14,4 +14,4 @@ then
   wpath=$(readlink /proc/${ppid}/cwd || print $HOME)
 fi
 
-$terminal --directory $wpath
+swaymsg -t command exec $terminal -- --directory $wpath
