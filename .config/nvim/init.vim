@@ -17,6 +17,7 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-sensible'
 Plug 'andymass/vim-matchup'
+Plug 'unblevable/quick-scope'
 
 call plug#end()
 
@@ -52,8 +53,8 @@ set listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨," eol:↲,nb
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'onedark'
 
-let mapleader = ","
-let g:mapleader = ","
+let mapleader = " "
+let g:mapleader = " "
 
 let g:netrw_liststyle=3
 
