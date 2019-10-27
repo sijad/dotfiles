@@ -10,7 +10,7 @@ Plug '~/.fzf' | Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'joshdick/onedark.vim'
+Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
@@ -22,7 +22,7 @@ Plug 'unblevable/quick-scope'
 call plug#end()
 
 " Theme
-colorscheme onedark
+colorscheme gruvbox
 hi SpecialKey ctermfg=8
 
 set termguicolors
@@ -38,7 +38,6 @@ set smartcase
 set hlsearch
 set magic
 set foldcolumn=1
-set t_Co=256
 set nobackup
 set nowb
 set noswapfile
@@ -51,7 +50,7 @@ set showbreak=↪\
 set listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨," eol:↲,nbsp:·,
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'onedark'
+let g:airline_theme = 'gruvbox'
 
 let mapleader = " "
 let g:mapleader = " "
