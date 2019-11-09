@@ -38,13 +38,13 @@ set smartcase
 set hlsearch
 set magic
 set foldcolumn=1
-set t_Co=256
 set nobackup
 set nowb
 set noswapfile
 set expandtab
 set smartindent
 set wrap
+set hidden
 set mouse=
 set completeopt=menu,menuone,preview,noselect,noinsert
 set showbreak=↪\ 
