@@ -16,7 +16,6 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-sensible'
-Plug 'andymass/vim-matchup'
 Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-fugitive'
 
