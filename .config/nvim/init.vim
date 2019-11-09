@@ -3,7 +3,7 @@ set shell=bash
 " Plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 Plug 'vim-airline/vim-airline'
 Plug 'sheerun/vim-polyglot'
 Plug '~/.fzf' | Plug 'junegunn/fzf.vim'
