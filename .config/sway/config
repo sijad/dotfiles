@@ -21,7 +21,7 @@ set $term kitty
 default_border none
 gaps inner 3
 smart_gaps on
-font pango:Vazir Code Hack 10
+font pango:Hack 10
 
 ### Idle configuration
 #
