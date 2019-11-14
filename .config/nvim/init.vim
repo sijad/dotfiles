@@ -38,7 +38,6 @@ set smartcase
 set hlsearch
 set magic
 set foldcolumn=1
-set nobackup
 set nowb
 set noswapfile
 set expandtab
@@ -46,6 +45,11 @@ set smartindent
 set wrap
 set hidden
 set mouse=
+set updatetime=300
+set nobackup
+set nowritebackup
+set shortmess+=c
+set signcolumn=yes
 set completeopt=menu,menuone,preview,noselect,noinsert
 set showbreak=↪\ 
 set listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨," eol:↲,nbsp:·,
