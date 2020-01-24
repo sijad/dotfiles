@@ -13,3 +13,7 @@ bindsym Print exec ~/.config/sway/scripts/screenshot.sh
 bindsym $mod+XF86AudioMute exec echo player-pause | cmus-remote
 bindsym $mod+XF86AudioLowerVolume exec echo player-prev | cmus-remote
 bindsym $mod+XF86AudioRaiseVolume exec echo player-next | cmus-remote
+bindsym XF86AudioPlay exec echo player-play | cmus-remote
+bindsym XF86AudioPause exec echo player-pause | cmus-remote
+bindsym XF86AudioNext exec echo player-next | cmus-remote
+bindsym XF86AudioPrev exec echo player-prev | cmus-remote
