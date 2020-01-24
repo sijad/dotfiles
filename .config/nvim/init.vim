@@ -80,7 +80,7 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-autocmd BufWritePre *.go :CocCommand editor.action.organizeImport
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
