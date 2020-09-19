@@ -11,6 +11,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'joshdick/onedark.vim'
+Plug 'srcery-colors/srcery-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
@@ -22,7 +23,7 @@ Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " Theme
-colorscheme onedark
+colorscheme srcery
 hi SpecialKey ctermfg=8
 
 set termguicolors
@@ -55,7 +56,7 @@ set showbreak=↪\
 set listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨," eol:↲,nbsp:·,
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'onedark'
+let g:airline_theme = 'srcery'
 
 let mapleader = " "
 let g:mapleader = " "

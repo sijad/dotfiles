@@ -24,7 +24,7 @@ font xft:vazircodehack 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty --working-directory $(xcwd)
+bindsym $mod+Return exec sh -c 'cd $(xcwd) && exec st'
 
 # kill focused window
 bindsym $mod+q kill
@@ -32,9 +32,12 @@ bindsym $mod+q kill
 # start program launcher
 bindsym $mod+d exec --no-startup-id dmenu_run
 
+# calculator
+bindsym $mod+equal --no-startup-id dmenu_run --calc
+
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 5"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 5"
 
 # Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
@@ -185,19 +188,17 @@ bindsym $mod+mod1+l exec --no-startup-id i3lock -B 10 --keylayout 0 -k --pass-me
 
 # Autostart applications
 exec --no-startup-id feh --bg-fill ~/backgrounds/wallpaper.jpg
-exec --no-startup-id nm-applet
 exec --no-startup-id redshift
-exec --no-startup-id blueman-applet
-exec --no-startup-id sbxkb
-exec --no-startup-id pa-applet
-exec --no-startup-id pulseaudio
 exec --no-startup-id picom
-exec --no-startup-id xautolock -time 10 -locker "i3lock -B 10 --keylayout 0 -k --pass-media-keys --pass-volume-keys --timecolor=ffffff --datecolor=ffffff --layoutcolor=ffffff"
-#exec_always --no-startup-id ff-theme-util
-#exec_always --no-startup-id fix_xcursor
+exec_always --no-startup-id xautolock -time 10 -locker "i3lock -B 10 --keylayout 0 -k --pass-media-keys --pass-volume-keys --timecolor=ffffff --datecolor=ffffff --layoutcolor=ffffff"
+exec_always --no-startup-id sleep 5; blueman-applet
+exec_always --no-startup-id sleep 5; sbxkb
+exec_always --no-startup-id sleep 5; pa-applet
+exec_always --no-startup-id sleep 5; nm-applet
+#exec --no-startup-id pulseaudio
 
 exec --no-startup-id xset r rate 140 50
-exec setxkbmap -layout us,ir -option 'grp:caps_toggle'
+#exec setxkbmap -layout us,ir -option 'grp:caps_toggle'
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
