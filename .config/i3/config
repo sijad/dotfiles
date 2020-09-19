@@ -191,10 +191,10 @@ exec --no-startup-id feh --bg-fill ~/backgrounds/wallpaper.jpg
 exec --no-startup-id redshift
 exec --no-startup-id picom
 exec_always --no-startup-id xautolock -time 10 -locker "i3lock -B 10 --keylayout 0 -k --pass-media-keys --pass-volume-keys --timecolor=ffffff --datecolor=ffffff --layoutcolor=ffffff"
-exec_always --no-startup-id sleep 5; blueman-applet
-exec_always --no-startup-id sleep 5; sbxkb
-exec_always --no-startup-id sleep 5; pa-applet
-exec_always --no-startup-id sleep 5; nm-applet
+exec_always --no-startup-id blueman-applet
+exec_always --no-startup-id sbxkb
+exec_always --no-startup-id pa-applet
+exec_always --no-startup-id nm-applet
 #exec --no-startup-id pulseaudio
 
 exec --no-startup-id xset r rate 140 50
