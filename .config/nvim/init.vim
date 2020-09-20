@@ -6,7 +6,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'mhinz/vim-signify'
 Plug 'vim-airline/vim-airline'
 Plug 'sheerun/vim-polyglot'
-Plug '~/.fzf' | Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
