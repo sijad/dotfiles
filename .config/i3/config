@@ -24,7 +24,7 @@ font xft:vazircodehack 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec sh -c 'cd $(xcwd) && exec st'
+bindsym $mod+Return exec sh -c 'exec alacritty --working-directory $(xcwd)'
 
 # kill focused window
 bindsym $mod+q kill
@@ -184,7 +184,7 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym $mod+mod1+l exec --no-startup-id i3lock -B 10 --keylayout 0 -k --pass-media-keys --pass-volume-keys --timecolor=ffffff --datecolor=ffffff --layoutcolor=ffffff
+bindsym $mod+mod1+l exec --no-startup-id i3lock -B 10 --keylayout 0 -k --pass-media-keys --pass-volume-keys --time-color=ffffff --date-color=ffffff --layout-color=ffffff
 
 # Autostart applications
 exec --no-startup-id feh --bg-fill ~/backgrounds/wallpaper.jpg
