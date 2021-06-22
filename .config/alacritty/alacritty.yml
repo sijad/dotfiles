@@ -3,9 +3,9 @@ scrolling:
 
 font:
   normal:
-    family: Vazir Code Hack
+    family: mononoki
     style: Regular
-  size: 12.0
+  size: 11.0
 
 # Colors (Darkside)
 colors:
@@ -35,6 +35,6 @@ colors:
     cyan:     '#3D97E2'
     white:    '#BABABA'
 
-mouse:
-  url:
-    launcher: None
+# mouse:
+#   url:
+#     launcher: None
