@@ -44,7 +44,7 @@
 
 ### Output configuration
     output * bg ~/backgrounds/wallpaper.jpg fill
-    output eDP-1 disable
+    # output eDP-1 disable
 
 ### Key bindings
     # identify keys with `xev -event keyboard`
@@ -176,6 +176,8 @@
     bindsym XF86AudioPause exec playerctl play-pause
     bindsym XF86AudioPrev exec playerctl previous
     bindsym XF86AudioNext exec playerctl next
+    bindsym XF86AudioForward exec playerctl position 1+
+    bindsym XF86AudioRewind exec playerctl position 1-
 
 #
 # Resizing containers:
