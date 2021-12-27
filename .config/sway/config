@@ -17,7 +17,7 @@
 
 ### Idle configuration
     exec swayidle -w \
-              timeout 600 '~/.config/sway/scripts/lock.sh' \
+              timeout 750 '~/.config/sway/scripts/lock.sh' \
               timeout 1000 'swaymsg "output * dpms off"' \
                    resume 'swaymsg "output * dpms on"; bluetoothctl power on' \
               before-sleep '~/.config/sway/scripts/lock.sh --grace 2'
@@ -44,7 +44,10 @@
 
 ### Output configuration
     output * bg ~/backgrounds/wallpaper.jpg fill
-    # output eDP-1 disable
+    output HDMI-A-2 position 1920 0
+    output eDP-1 position 0 0
+    focus output HDMI-A-2
+    workspace 1 output HDMI-A-2
 
 ### Key bindings
     # identify keys with `xev -event keyboard`
