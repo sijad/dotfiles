@@ -58,6 +58,7 @@ vim.o.cc = '80'
 vim.o.smartindent = true
 vim.o.shiftwidth = 2
 vim.o.tabstop = 2
+vim.o.expandtab = true
 vim.o.termguicolors = true
 vim.o.completeopt = 'menu,menuone,preview,noselect,noinsert'
 vim.wo.signcolumn = 'yes'
@@ -199,7 +200,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  client.resolved_capabilities.document_formatting = false
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -212,14 +213,6 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
-
-lspconfig.eslint.setup {
-  on_attach = function(client, bufrn)
-    on_attach(client, bufrn)
-    vim.cmd [[au BufWritePre <buffer> EslintFixAll]]
-  end,
-  capabilities = capabilities,
-}
 
 require('colorizer').setup {
   '*';
@@ -271,3 +264,27 @@ cmp.setup {
     { name = 'path' }
   },
 }
+
+local null_ls = require('null-ls')
+null_ls.setup({
+    fallback_severity = vim.diagnostic.severity.INFO,
+    sources = {
+      null_ls.builtins.formatting.stylua,
+      null_ls.builtins.formatting.eslint_d,
+
+      null_ls.builtins.diagnostics.eslint_d,
+      null_ls.builtins.diagnostics.cspell,
+
+      null_ls.builtins.completion.spell,
+    },
+    on_attach = function(client)
+      if client.resolved_capabilities.document_formatting then
+        vim.cmd([[
+        augroup LspFormatting
+          autocmd! * <buffer>
+          autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+        augroup END
+        ]])
+      end
+    end,
+})
