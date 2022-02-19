@@ -304,7 +304,7 @@ local mapOpts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', mapOpts)
 
 vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], mapOpts)
-vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]], mapOpts)
+vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files{ previewer = false }<CR>]], mapOpts)
 vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], mapOpts)
 vim.api.nvim_set_keymap('n', '<leader>fm', [[<cmd>lua require('telescope.builtin').git_status()<CR>]], mapOpts)
 
