@@ -93,7 +93,6 @@ vim.g.loaded_matchparen = 0
 vim.g.loaded_spec = 0
 
 vim.cmd [[colorscheme onedark]]
-vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 
 require('lualine').setup()
 
@@ -112,11 +111,6 @@ require('telescope').setup {
   },
 }
 require('telescope').load_extension 'fzf'
-
-vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fm', [[<cmd>lua require('telescope.builtin').git_status()<CR>]], { noremap = true, silent = true })
 
 require('nvim-treesitter.configs').setup {
   highlight = {
@@ -176,11 +170,6 @@ require('nvim-treesitter.configs').setup {
     max_file_lines = nil,
   },
 }
-
-vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', { noremap = true, silent = true })
 
 local lspconfig = require 'lspconfig'
 local on_attach = function(client, bufnr)
@@ -285,3 +274,39 @@ null_ls.setup({
       end
     end,
 })
+
+local mapOpts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap('', '<Space>', '<Nop>', mapOpts)
+vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], mapOpts)
+vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]], mapOpts)
+vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], mapOpts)
+vim.api.nvim_set_keymap('n', '<leader>fm', [[<cmd>lua require('telescope.builtin').git_status()<CR>]], mapOpts)
+
+vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', mapOpts)
+vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', mapOpts)
+vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', mapOpts)
+vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', mapOpts)
+
+vim.api.nvim_set_keymap('c', '<Down>', '<Nop>', mapOpts)
+vim.api.nvim_set_keymap('c', '<Left>', '<Nop>', mapOpts)
+vim.api.nvim_set_keymap('c', '<Right>', '<Nop>', mapOpts)
+vim.api.nvim_set_keymap('c', '<Up>', '<Nop>', mapOpts)
+vim.api.nvim_set_keymap('c', '<C-j>', '<Down>', { noremap = true })
+vim.api.nvim_set_keymap('c', '<C-h>', '<Left>', { noremap = true })
+vim.api.nvim_set_keymap('c', '<C-l>', '<Right>', { noremap = true })
+vim.api.nvim_set_keymap('c', '<C-k>', '<Up>', { noremap = true })
+
+vim.api.nvim_set_keymap('i', '<Down>', '<Nop>', mapOpts)
+vim.api.nvim_set_keymap('i', '<Left>', '<Nop>', mapOpts)
+vim.api.nvim_set_keymap('i', '<Right>', '<Nop>', mapOpts)
+vim.api.nvim_set_keymap('i', '<Up>', '<Nop>', mapOpts)
+
+vim.api.nvim_set_keymap('n', '<Down>', '<Nop>', mapOpts)
+vim.api.nvim_set_keymap('n', '<Left>', '<Nop>', mapOpts)
+vim.api.nvim_set_keymap('n', '<Right>', '<Nop>', mapOpts)
+vim.api.nvim_set_keymap('n', '<Up>', '<Nop>', mapOpts)
+
+vim.api.nvim_set_keymap('v', '<Down>', '<Nop>', mapOpts)
+vim.api.nvim_set_keymap('v', '<Left>', '<Nop>', mapOpts)
+vim.api.nvim_set_keymap('v', '<Right>', '<Nop>', mapOpts)
+vim.api.nvim_set_keymap('v', '<Up>', '<Nop>', mapOpts)
