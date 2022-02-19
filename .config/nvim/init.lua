@@ -45,6 +45,14 @@ require('packer').startup(function(use) use 'wbthomason/packer.nvim' use 'numToS
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
+  use {
+    "akinsho/bufferline.nvim",
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+  use {
+    "moll/vim-bbye",
+    after = "bufferline.nvim",
+  }
 end)
 
 vim.o.hlsearch = true
@@ -100,6 +108,8 @@ require('lualine').setup()
 require('Comment').setup()
 
 require('gitsigns').setup()
+
+require("bufferline").setup()
 
 require('telescope').setup {
   defaults = {
@@ -292,6 +302,13 @@ vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', ma
 vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', mapOpts)
 vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', mapOpts)
 
+vim.api.nvim_set_keymap('n', '<Down>', '<Nop>', mapOpts)
+vim.api.nvim_set_keymap('n', '<Left>', '<Nop>', mapOpts)
+vim.api.nvim_set_keymap('n', '<Right>', '<Nop>', mapOpts)
+vim.api.nvim_set_keymap('n', '<Up>', '<Nop>', mapOpts)
+vim.api.nvim_set_keymap('n', '<Tab>', '<cmd>BufferLineCycleNext<CR>', mapOpts)
+vim.api.nvim_set_keymap('n', '<S-Tab>', '<cmd>BufferLineCyclePrev<CR>', mapOpts)
+
 vim.api.nvim_set_keymap('c', '<Down>', '<Nop>', mapOpts)
 vim.api.nvim_set_keymap('c', '<Left>', '<Nop>', mapOpts)
 vim.api.nvim_set_keymap('c', '<Right>', '<Nop>', mapOpts)
@@ -305,11 +322,6 @@ vim.api.nvim_set_keymap('i', '<Down>', '<Nop>', mapOpts)
 vim.api.nvim_set_keymap('i', '<Left>', '<Nop>', mapOpts)
 vim.api.nvim_set_keymap('i', '<Right>', '<Nop>', mapOpts)
 vim.api.nvim_set_keymap('i', '<Up>', '<Nop>', mapOpts)
-
-vim.api.nvim_set_keymap('n', '<Down>', '<Nop>', mapOpts)
-vim.api.nvim_set_keymap('n', '<Left>', '<Nop>', mapOpts)
-vim.api.nvim_set_keymap('n', '<Right>', '<Nop>', mapOpts)
-vim.api.nvim_set_keymap('n', '<Up>', '<Nop>', mapOpts)
 
 vim.api.nvim_set_keymap('v', '<Down>', '<Nop>', mapOpts)
 vim.api.nvim_set_keymap('v', '<Left>', '<Nop>', mapOpts)
