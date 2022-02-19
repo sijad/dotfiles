@@ -12,9 +12,7 @@ vim.cmd [[
   augroup end
 ]]
 
-require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
-  use 'numToStr/Comment.nvim'
+require('packer').startup(function(use) use 'wbthomason/packer.nvim' use 'numToStr/Comment.nvim'
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'navarasu/onedark.nvim'
@@ -274,8 +272,6 @@ null_ls.setup({
 
       null_ls.builtins.diagnostics.eslint_d,
       null_ls.builtins.diagnostics.cspell,
-
-      null_ls.builtins.completion.spell,
     },
     on_attach = function(client)
       if client.resolved_capabilities.document_formatting then
