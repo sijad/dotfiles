@@ -34,6 +34,7 @@ require('packer').startup(function(use) use 'wbthomason/packer.nvim' use 'numToS
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'saadparwaiz1/cmp_luasnip'
+  use "rafamadriz/friendly-snippets"
   use {
     'appelgriebsch/surround.nvim',
     config = function()
@@ -207,8 +208,11 @@ require('colorizer').setup {
   css = { css = true; }
 }
 
-local cmp = require 'cmp'
 local luasnip = require 'luasnip'
+require("luasnip.loaders.from_vscode").load()
+
+local cmp = require 'cmp'
+
 cmp.setup {
   snippet = {
     expand = function(args)
