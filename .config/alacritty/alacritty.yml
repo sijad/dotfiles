@@ -3,37 +3,38 @@ scrolling:
 
 font:
   normal:
-    family: mononoki
+    family: Mononoki Nerd Font 
     style: Regular
   size: 11.0
 
-# Colors (Darkside)
+# Colors (spacecamp)
 colors:
+  # Default colors
   primary:
-    background: '#222324'
-    foreground: '#BABABA'
+    background: '0x121212'
+    foreground: '0xd0d0d0'
 
   # Normal colors
   normal:
-    black:    '#000000'
-    red:      '#E8341C'
-    green:    '#68C256'
-    yellow:   '#F2D42C'
-    blue:     '#1C98E8'
-    magenta:  '#8E69C9'
-    cyan:     '#1C98E8'
-    white:    '#BABABA'
+    black:   '0x282828'
+    red:     '0xd71a1a'
+    green:   '0x57ba37'
+    yellow:  '0xf0d50c'
+    blue:    '0x91aadf'
+    magenta: '0xcf73e6'
+    cyan:    '0xb7cbf4'
+    white:   '0xdedede'
 
   # Bright colors
   bright:
-    black:    '#666666'
-    red:      '#E05A4F'
-    green:    '#77B869'
-    yellow:   '#EFD64B'
-    blue:     '#387CD3'
-    magenta:  '#957BBE'
-    cyan:     '#3D97E2'
-    white:    '#BABABA'
+    black:   '0x666666'
+    red:     '0xff0000'
+    green:   '0xd8fa3b'
+    yellow:  '0xe7c547'
+    blue:    '0xb7cbf4'
+    magenta: '0xb77ee0'
+    cyan:    '0xa9c1de'
+    white:   '0xeeeeee'
 
 # mouse:
 #   url:
