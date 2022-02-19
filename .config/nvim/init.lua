@@ -43,6 +43,7 @@ require('packer').startup(function(use)
   use 'saadparwaiz1/cmp_luasnip'
   use "rafamadriz/friendly-snippets"
   use 'karb94/neoscroll.nvim'
+  use 'f-person/git-blame.nvim'
   use {
     'appelgriebsch/surround.nvim',
     config = function()
