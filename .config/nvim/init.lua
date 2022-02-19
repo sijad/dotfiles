@@ -1,6 +1,8 @@
 -- install following commands by npm or yarn
 -- npm i -g cspell vscode-langservers-extracted eslint_d rustywind @tailwindcss/language-server  typescript-language-server
 
+require('impatient')
+
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -14,7 +16,10 @@ vim.cmd [[
   augroup end
 ]]
 
-require('packer').startup(function(use) use 'wbthomason/packer.nvim' use 'numToStr/Comment.nvim'
+require('packer').startup(function(use)
+  use 'lewis6991/impatient.nvim'
+  use 'wbthomason/packer.nvim'
+  use 'numToStr/Comment.nvim'
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'navarasu/onedark.nvim'
@@ -37,6 +42,7 @@ require('packer').startup(function(use) use 'wbthomason/packer.nvim' use 'numToS
   use 'hrsh7th/cmp-path'
   use 'saadparwaiz1/cmp_luasnip'
   use "rafamadriz/friendly-snippets"
+  use 'karb94/neoscroll.nvim'
   use {
     'appelgriebsch/surround.nvim',
     config = function()
@@ -112,6 +118,8 @@ require('Comment').setup()
 require('gitsigns').setup()
 
 require("bufferline").setup()
+
+require("neoscroll").setup()
 
 require('telescope').setup {
   defaults = {
@@ -293,6 +301,7 @@ null_ls.setup({
 
 local mapOpts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', mapOpts)
+
 vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], mapOpts)
 vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]], mapOpts)
 vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], mapOpts)
