@@ -308,6 +308,7 @@ vim.api.nvim_set_keymap('n', '<Right>', '<Nop>', mapOpts)
 vim.api.nvim_set_keymap('n', '<Up>', '<Nop>', mapOpts)
 vim.api.nvim_set_keymap('n', '<Tab>', '<cmd>BufferLineCycleNext<CR>', mapOpts)
 vim.api.nvim_set_keymap('n', '<S-Tab>', '<cmd>BufferLineCyclePrev<CR>', mapOpts)
+vim.api.nvim_set_keymap('n', '<Leader>q', '<cmd>Bdelete<CR>', mapOpts)
 
 vim.api.nvim_set_keymap('c', '<Down>', '<Nop>', mapOpts)
 vim.api.nvim_set_keymap('c', '<Left>', '<Nop>', mapOpts)
