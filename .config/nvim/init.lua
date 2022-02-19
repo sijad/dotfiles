@@ -29,9 +29,9 @@ require('packer').startup(function(use)
   use 'unblevable/quick-scope'
   use 'gpanders/editorconfig.nvim'
   use 'tpope/vim-vinegar'
-	use 'norcalli/nvim-colorizer.lua'
+  use 'norcalli/nvim-colorizer.lua'
   use 'windwp/nvim-ts-autotag'
-	use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
@@ -42,10 +42,10 @@ require('packer').startup(function(use)
       require"surround".setup {mappings_style = "surround"}
     end
   }
-	use {
-		'nvim-lualine/lualine.nvim',
-		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-	}
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
 end)
 
 vim.o.hlsearch = true
@@ -66,7 +66,7 @@ vim.opt.showbreak = "↪ "
 vim.opt.hidden = true
 vim.opt.list = true
 vim.opt.wrap = true
-vim.opt.listchars:append("tab:⟶ ")
+vim.opt.listchars:append("tab: ›")
 vim.opt.listchars:append("nbsp:␣")
 vim.opt.listchars:append("trail:·")
 vim.opt.listchars:append("extends:⟩")
@@ -168,10 +168,10 @@ require('nvim-treesitter.configs').setup {
       },
     },
   },
-	autotag = {
+  autotag = {
     enable = true,
   },
-	rainbow = {
+  rainbow = {
     enable = true,
     extended_mode = true,
     max_file_lines = nil,
@@ -222,7 +222,7 @@ lspconfig.eslint.setup {
 }
 
 require('colorizer').setup {
-	'*';
+  '*';
   css = { css = true; }
 }
 
