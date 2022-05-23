@@ -1,5 +1,5 @@
 -- install following commands by npm or yarn
--- npm i -g cspell vscode-langservers-extracted eslint_d rustywind @tailwindcss/language-server  typescript-language-server
+-- npm i -g cspell vscode-langservers-extracted eslint_d rustywind @tailwindcss/language-server  typescript-language-server solidity-language-server solhint
 
 require('impatient')
 
@@ -19,7 +19,6 @@ vim.cmd [[
 require('packer').startup(function(use)
   use 'lewis6991/impatient.nvim'
   use 'wbthomason/packer.nvim'
-  use 'numToStr/Comment.nvim'
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'navarasu/onedark.nvim'
@@ -27,13 +26,11 @@ require('packer').startup(function(use)
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use 'nvim-treesitter/nvim-treesitter'
   use 'nvim-treesitter/nvim-treesitter-textobjects'
-  use 'p00f/nvim-ts-rainbow'
   use 'neovim/nvim-lspconfig'
   use 'L3MON4D3/LuaSnip'
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'unblevable/quick-scope'
   use 'gpanders/editorconfig.nvim'
-  use 'tpope/vim-vinegar'
   use 'norcalli/nvim-colorizer.lua'
   use 'windwp/nvim-ts-autotag'
   use 'hrsh7th/nvim-cmp'
@@ -41,8 +38,6 @@ require('packer').startup(function(use)
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'saadparwaiz1/cmp_luasnip'
-  use "rafamadriz/friendly-snippets"
-  use 'karb94/neoscroll.nvim'
   use 'f-person/git-blame.nvim'
   use {
     'appelgriebsch/surround.nvim',
@@ -62,6 +57,14 @@ require('packer').startup(function(use)
     "moll/vim-bbye",
     after = "bufferline.nvim",
   }
+  use {
+    'numToStr/Comment.nvim',
+    tag = 'v0.6',
+    config = function()
+        require('Comment').setup()
+    end
+  }
+  use "elihunter173/dirbuf.nvim"
 end)
 
 vim.o.hlsearch = true
@@ -89,11 +92,6 @@ vim.opt.listchars:append("trail:·")
 vim.opt.listchars:append("extends:⟩")
 vim.opt.listchars:append("precedes:⟨")
 vim.opt.cmdheight = 1
-vim.g.noswapfile = true
-vim.g.nobackup = true
-vim.g.nowritebackup = true
-vim.g.nowb = true
-vim.g.netrw_liststyle = 3
 vim.g.indent_blankline_char = '┊'
 vim.g.indent_blankline_filetype_exclude = { 'help', 'packer' }
 vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
@@ -107,21 +105,31 @@ vim.g.loaded_tar = 0
 vim.g.loaded_tarPlugin = 0
 vim.g.loaded_zipPlugin = 0
 vim.g.loaded_2html_plugin = 0
-vim.g.loaded_matchit = 0
-vim.g.loaded_matchparen = 0
+vim.g.loaded_netrwFileHandlers = 0
+vim.g.loaded_netrwPlugin = 0
+vim.g.loaded_netrwSettngs = 0
+-- vim.g.loaded_matchit = 0
+-- vim.g.loaded_matchparen = 0
 vim.g.loaded_spec = 0
 
 vim.cmd [[colorscheme onedark]]
+vim.cmd 'set nobackup'
+vim.cmd 'set nowb'
+vim.cmd 'set noswapfile'
+vim.cmd 'set nowritebackup'
 
 require('lualine').setup()
-
-require('Comment').setup()
 
 require('gitsigns').setup()
 
 require("bufferline").setup()
 
-require("neoscroll").setup()
+require("dirbuf").setup {
+    hash_padding = 2,
+    show_hidden = true,
+    sort_order = "default",
+    write_cmd = "DirbufSync",
+}
 
 require('telescope').setup {
   defaults = {
@@ -187,11 +195,9 @@ require('nvim-treesitter.configs').setup {
   autotag = {
     enable = true,
   },
-  rainbow = {
-    enable = true,
-    extended_mode = true,
-    max_file_lines = nil,
-  },
+  indent = {
+    enable = true
+  }
 }
 
 local lspconfig = require 'lspconfig'
@@ -216,7 +222,7 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local servers = { 'tsserver', 'html', 'cssls', 'jsonls', 'tailwindcss' }
+local servers = { 'tsserver', 'html', 'cssls', 'jsonls', 'tailwindcss', 'solidity_ls' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
@@ -229,9 +235,12 @@ require('colorizer').setup {
   css = { css = true; }
 }
 
-local luasnip = require 'luasnip'
-require("luasnip.loaders.from_vscode").load()
+local has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
 
+local luasnip = require 'luasnip'
 local cmp = require 'cmp'
 
 cmp.setup {
@@ -251,16 +260,18 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = function(fallback)
+    ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
+      elseif has_words_before() then
+        cmp.complete()
       else
         fallback()
       end
-    end,
-    ['<S-Tab>'] = function(fallback)
+    end, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
@@ -268,7 +279,7 @@ cmp.setup {
       else
         fallback()
       end
-    end,
+    end, { "i", "s" }),
   },
   sources = {
     { name = 'nvim_lsp' },
@@ -282,12 +293,18 @@ local null_ls = require('null-ls')
 null_ls.setup({
     fallback_severity = vim.diagnostic.severity.INFO,
     sources = {
-      null_ls.builtins.formatting.stylua,
       null_ls.builtins.formatting.eslint_d,
       null_ls.builtins.formatting.rustywind,
+      null_ls.builtins.formatting.prettier.with({
+        disabled_filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+        extra_filetypes = { "solidity" },
+      }),
 
       null_ls.builtins.diagnostics.eslint_d,
       null_ls.builtins.diagnostics.cspell,
+      null_ls.builtins.diagnostics.solhint,
+
+      null_ls.builtins.code_actions.eslint_d,
     },
     on_attach = function(client)
       if client.resolved_capabilities.document_formatting then
